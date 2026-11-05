@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self'; connect-src 'self' https://geocoding-api.open-meteo.com https://api.open-meteo.com https://api.rss2json.com;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Galaxy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stars stars-a"></div>
+  <div class="stars stars-b"></div>
+  <div class="nebula"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-orb">✦</span>
+      <div>
+        <strong>NEXUS GALAXY</strong>
+        <small>PERSONAL COMMAND CENTRE</small>
+      </div>
+    </div>
+    <div class="top-right">
+      <span class="live-dot"></span>
+      <span>SYSTEM ONLINE</span>
+      <span id="topClock">--:--:--</span>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <button class="nav-btn active" data-target="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav-btn" data-target="calculator">▦ <span>Calculator</span></button>
+    <button class="nav-btn" data-target="notes">▤ <span>Notes</span></button>
+    <button class="nav-btn" data-target="calendar">▦ <span>Calendar</span></button>
+    <button class="nav-btn" data-target="news">◉ <span>News</span></button>
+    <button class="nav-btn" data-target="weather">☼ <span>Weather</span></button>
+    <button class="nav-btn" data-target="search">⌕ <span>Web search</span></button>
+    <div class="sidebar-bottom">
+      <span class="tiny-orb"></span>
+      <small>GALAXY MODE<br>ACTIVE</small>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section id="dashboard" class="page active">
+      <div class="welcome">
+        <div>
+          <p class="eyebrow">YOUR DIGITAL UNIVERSE</p>
+          <h1>Welcome back, <span>Commander.</span></h1>
+          <p class="muted">Everything you need, gathered in one place.</p>
+        </div>
+        <div class="date-chip" id="dateChip">TODAY</div>
+      </div>
+
+      <div class="dashboard-grid">
+        <article class="panel clock-panel">
+          <div class="panel-label">LOCAL TIME <span>◌ LIVE</span></div>
+          <div class="big-clock" id="heroClock">00:00</div>
+          <div id="fullDate" class="muted"></div>
+          <div class="clock-line"></div>
+          <div class="clock-foot">NEXUS SYSTEM TIME</div>
+        </article>
+
+        <article class="panel weather-panel">
+          <div class="panel-label">WEATHER <button class="text-btn" data-go="weather">OPEN ↗</button></div>
+          <div class="weather-main">
+            <span class="weather-icon">☀</span>
+            <div>
+              <div id="dashTemp" class="temperature">--°</div>
+              <div id="dashPlace" class="muted">Loading location…</div>
+            </div>
+          </div>
+          <div id="dashWeatherText" class="muted">Connect to the internet to load weather.</div>
+        </article>
+
+        <article class="panel quick-panel">
+          <div class="panel-label">QUICK LAUNCH</div>
+          <div class="quick-actions">
+            <button data-go="calculator">▦<span>Calculator</span></button>
+            <button data-go="notes">▤<span>New note</span></button>
+            <button data-go="calendar">▦<span>Calendar</span></button>
+            <button data-go="search">⌕<span>Search web</span></button>
+          </div>
+        </article>
+
+        <article class="panel news-panel">
+          <div class="panel-label">LATEST HEADLINES <button class="text-btn" data-go="news">ALL NEWS ↗</button></div>
+          <div id="dashHeadlines" class="headline-list">
+            <p class="muted">Loading headlines…</p>
+          </div>
+        </article>
+
+        <article class="panel agenda-panel">
+          <div class="panel-label">UPCOMING <button class="text-btn" data-go="calendar">CALENDAR ↗</button></div>
+          <div id="upcomingList" class="muted">Your saved events will appear here.</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="calculator" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">PRECISION TOOLS</p>
+        <h1>Digital <span>Calculator</span></h1>
+      </div>
+      <div class="calc-wrap panel">
+        <div class="calc-display">
+          <small>NEXUS / CALC</small>
+          <div id="calcExpression" class="calc-expression"></div>
+          <div id="calcResult" class="calc-result">0</div>
+        </div>
+        <div class="calc-keys" id="calcKeys">
+          <button class="utility" data-key="AC">AC</button>
+          <button class="utility" data-key="(">(</button>
+          <button class="utility" data-key=")">)</button>
+          <button class="operator" data-key="÷">÷</button>
+          <button data-key="7">7</button>
+          <button data-key="8">8</button>
+          <button data-key="9">9</button>
+          <button class="operator" data-key="×">×</button>
+          <button data-key="4">4</button>
+          <button data-key="5">5</button>
+          <button data-key="6">6</button>
+          <button class="operator" data-key="−">−</button>
+          <button data-key="1">1</button>
+          <button data-key="2">2</button>
+          <button data-key="3">3</button>
+          <button class="operator" data-key="+">+</button>
+          <button data-key="0">0</button>
+          <button data-key=".">.</button>
+          <button class="utility" data-key="DEL">⌫</button>
+          <button class="equals" data-key="=">=</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">PERSONAL KNOWLEDGE</p>
+        <h1>Smart <span>Notes</span></h1>
+      </div>
+      <div class="notes-layout">
+        <article class="panel notes-list-panel">
+          <div class="panel-label">YOUR NOTES <button id="newNote" class="text-btn">+ NEW</button></div>
+          <input id="noteSearch" class="field" placeholder="Search notes…">
+          <div id="notesList" class="notes-list"></div>
+        </article>
+        <article class="panel editor-panel">
+          <input id="noteTitle" class="title-field" placeholder="Note title">
+          <div class="editor-meta" id="noteMeta">Select a note or create a new one</div>
+          <textarea id="noteBody" placeholder="Start writing your thoughts…"></textarea>
+          <div class="editor-actions">
+            <span id="saveStatus" class="muted">Saved locally on this device</span>
+            <button id="deleteNote" class="danger-btn">Delete note</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="calendar" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">PLAN YOUR FUTURE</p>
+        <h1>Galaxy <span>Calendar</span></h1>
+      </div>
+      <article class="panel calendar-panel">
+        <div class="calendar-toolbar">
+          <button id="prevMonth" class="icon-btn">‹</button>
+          <h2 id="monthLabel">Month Year</h2>
+          <button id="nextMonth" class="icon-btn">›</button>
+          <button id="todayBtn" class="text-btn">TODAY</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </article>
+      <article class="panel event-panel">
+        <div class="panel-label">EVENTS FOR <span id="selectedDateLabel">TODAY</span></div>
+        <div class="event-form">
+          <input id="eventTitle" class="field" placeholder="Event or reminder">
+          <button id="addEvent" class="primary-btn">ADD EVENT</button>
+        </div>
+        <div id="eventsList" class="events-list"></div>
+        <p class="muted small">Calendar navigation covers 2026–2036. Events are stored on this device.</p>
+      </article>
+    </section>
+
+    <section id="news" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">SIGNALS FROM AROUND THE WORLD</p>
+        <h1>News <span>Centre</span></h1>
+      </div>
+      <article class="panel">
+        <div class="panel-label">WORLD + TECHNOLOGY <button id="refreshNews" class="text-btn">↻ REFRESH</button></div>
+        <div id="newsList" class="news-feed"><p class="muted">Loading news feeds…</p></div>
+        <p class="muted small">Headlines are provided by BBC RSS feeds. Select a headline to open its original article.</p>
+      </article>
+    </section>
+
+    <section id="weather" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">LIVE CONDITIONS</p>
+        <h1>Weather <span>Station</span></h1>
+      </div>
+      <article class="panel weather-search">
+        <input id="cityInput" class="field" value="Kano" placeholder="Enter a city">
+        <button id="loadWeather" class="primary-btn">GET WEATHER</button>
+      </article>
+      <article class="panel current-weather">
+        <div>
+          <div class="panel-label">CURRENT CONDITIONS</div>
+          <h2 id="weatherPlace">Kano</h2>
+          <div id="weatherSummary" class="muted">Loading forecast…</div>
+          <div id="weatherTemp" class="weather-large">--°C</div>
+          <div id="weatherDetails" class="weather-details"></div>
+        </div>
+        <div class="weather-sun">☀</div>
+      </article>
+      <div class="forecast-grid" id="forecastGrid"></div>
+      <p class="muted small">Weather data supplied by Open-Meteo. An internet connection is required.</p>
+    </section>
+
+    <section id="search" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">EXPLORE THE INTERNET</p>
+        <h1>Web <span>Search</span></h1>
+      </div>
+      <article class="panel search-panel">
+        <div class="search-symbol">⌕</div>
+        <h2>Where would you like to go?</h2>
+        <p class="muted">Search the web or open a website in your default browser.</p>
+        <form id="searchForm" class="search-form">
+          <input id="webQuery" class="field" placeholder="Search anything…">
+          <button class="primary-btn" type="submit">SEARCH ↗</button>
+        </form>
+        <div class="search-shortcuts">
+          <button data-site="https://www.google.com">Google</button>
+          <button data-site="https://www.bing.com">Bing</button>
+          <button data-site="https://duckduckgo.com">DuckDuckGo</button>
+          <button data-site="https://www.wikipedia.org">Wikipedia</button>
+        </div>
+        <p id="searchStatus" class="muted small"></p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="taskbar">
+    <div class="task-left">
+      <span class="task-orb">✦</span>
+      <span>NEXUS</span>
+      <span class="task-divider"></span>
+      <button id="settingsToggle">⚙ SETTINGS</button>
+    </div>
+    <div class="task-controls">
+      <label>☼ <input id="brightness" type="range" min="45" max="115" value="100" aria-label="Interface brightness"></label>
+      <label>♫ <input id="volume" type="range" min="0" max="100" value="25" aria-label="Sound volume"></label>
+      <button id="soundToggle" title="Toggle sound">♫</button>
+      <span id="taskClock">00:00</span>
+    </div>
+  </footer>
+
+  <div id="settingsPanel" class="settings-panel hidden">
+    <div class="panel-label">QUICK SETTINGS <button id="closeSettings" class="text-btn">✕</button></div>
+    <p class="muted small">Interface brightness</p>
+    <input id="brightness2" type="range" min="45" max="115" value="100">
+    <p class="muted small">Sound effects</p>
+    <label class="switch-row">
+      <span>Enable interface sounds</span>
+      <input id="soundEnabled" type="checkbox" checked>
+    </label>
+    <p class="muted small">Your notes and events are saved locally in this app.</p>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
